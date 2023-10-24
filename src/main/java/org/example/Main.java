@@ -19,13 +19,15 @@ public class Main {
             Sheet sheet = workbook.getSheetAt(0);
             Row row = sheet.getRow(1);
             Cell cell = row.getCell(0);
-            System.out.println(cell);
+            System.out.println("Valor atual da celula: " + cell);
 
-            cell.setCellValue("Novo Valor");
+            String newString = cell + "||| Novo Valor";
+
+            cell.setCellValue(newString);
 
             try (FileOutputStream outputStream = new FileOutputStream(arquivoXLSX)) {
                 workbook.write(outputStream);
-                System.out.println("O valor da célula A2 foi alterado para 'Novo Valor' com sucesso!");
+                System.out.println("O valor da célula A2 foi alterado para " + newString + " com sucesso!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
